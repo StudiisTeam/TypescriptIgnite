@@ -1,5 +1,7 @@
+import { CourseProps } from "./helper/course-protocols";
+
 export class CreateCourse {
-  create(name: string, duration: number, instructor: string) {
+  create({ name, duration, instructor }: CourseProps) {
     console.log(name, duration, instructor);
   }
 }
