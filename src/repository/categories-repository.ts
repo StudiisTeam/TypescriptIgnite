@@ -10,6 +10,12 @@ export class CategoriesRepository {
   constructor() {
     this.categories = []
   }
+
+  findByName(name: string): Category {
+    const category = this.categories.find(category => category.name === name)
+    return category
+  }
+
   create({ name, description }: ICreateCategoryDTO): void {
     const category = new Category()
     Object.assign(category, {
@@ -18,5 +24,9 @@ export class CategoriesRepository {
       created_at: new Date()
     })
     this.categories.push(category)
+  }
+
+  list(): Category[] {
+    return this.categories
   }
 }
