@@ -1,11 +1,8 @@
+import { ICreateCategoryDTO } from "../helper/category-helper";
 import { Category } from "../model/category";
+import { ICreateCategoriesRepository } from "../protocols/create-repository";
 
-interface ICreateCategoryDTO {
-  name: string
-  description: string
-}
-
-export class CategoriesRepository {
+export class CategoriesRepository implements ICreateCategoriesRepository {
   private categories: Category[]
   constructor() {
     this.categories = []
