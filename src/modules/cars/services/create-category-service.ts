@@ -1,6 +1,5 @@
 import { ICreateCategoryDTO } from "../helper/category-helper"
-import { ICreateCategoriesRepository } from "../protocols/create-repository"
-import { CategoriesRepository } from "../repository/categories-repository"
+import { ICreateCategoriesRepository } from "../repositories/categories-repositories/protocols/create-repository"
 
 export class CreateCategoryService {
   private categoriesRepository: ICreateCategoriesRepository

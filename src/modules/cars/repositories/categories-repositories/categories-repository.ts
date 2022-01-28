@@ -1,6 +1,6 @@
-import { ICreateCategoryDTO } from "../helper/category-helper";
-import { Category } from "../model/category";
-import { ICreateCategoriesRepository } from "../protocols/create-repository";
+import { ICreateCategoryDTO } from "../../helper/category-helper";
+import { Category } from "../../model/category";
+import { ICreateCategoriesRepository } from "./protocols/create-repository";
 
 export class CategoriesRepository implements ICreateCategoriesRepository {
   private categories: Category[]
