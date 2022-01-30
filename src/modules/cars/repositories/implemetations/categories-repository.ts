@@ -1,11 +1,21 @@
 import { ICreateCategoryDTO } from "../../helper/category-helper";
 import { Category } from "../../model/category";
-import { ICreateCategoriesRepository } from "./protocols/create-repository";
+import { ICreateCategoriesRepository } from "../categories-repositories/create-repository";
 
 export class CategoriesRepository implements ICreateCategoriesRepository {
   private categories: Category[]
-  constructor() {
+
+  private static INSTANCE: CategoriesRepository
+
+  private constructor() {
     this.categories = []
+  }
+
+  public static getInstance() {
+    if (!CategoriesRepository.INSTANCE) {
+      CategoriesRepository.INSTANCE = new CategoriesRepository()
+    }
+    return CategoriesRepository.INSTANCE
   }
 
   findByName(name: string): Category {

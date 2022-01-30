@@ -1,5 +1,5 @@
 import { Category } from "../../model/category";
-import { ICreateCategoriesRepository } from "../../repositories/categories-repositories/protocols/create-repository";
+import { ICreateCategoriesRepository } from "../../repositories/categories-repositories/create-repository";
 
 export class ListCategoriesUseCase {
   constructor(private categoriesRepository: ICreateCategoriesRepository) { }
