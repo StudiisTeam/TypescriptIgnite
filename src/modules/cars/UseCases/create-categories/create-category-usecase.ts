@@ -1,10 +1,10 @@
 import { ICreateCategoryDTO } from "../../helper/category-helper"
-import { ICreateCategoriesRepository } from "../../repositories/categories-repositories/create-repository"
+import { ICategoriesRepository } from "../../repositories/categories-repositories/create-repository"
 
 
 export class CreateCategoryUseCase {
 
-  constructor(private categoriesRepository: ICreateCategoriesRepository) { }
+  constructor(private categoriesRepository: ICategoriesRepository) { }
   create({ name, description }: ICreateCategoryDTO): void {
     const categoryAlreadExist = this.categoriesRepository.findByName(name)
     if (categoryAlreadExist) {

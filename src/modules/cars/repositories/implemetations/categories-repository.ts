@@ -1,8 +1,8 @@
 import { ICreateCategoryDTO } from "../../helper/category-helper";
 import { Category } from "../../model/category";
-import { ICreateCategoriesRepository } from "../categories-repositories/create-repository";
+import { ICategoriesRepository } from "../categories-repositories/create-repository";
 
-export class CategoriesRepository implements ICreateCategoriesRepository {
+export class CategoriesRepository implements ICategoriesRepository {
   private categories: Category[]
 
   private static INSTANCE: CategoriesRepository
