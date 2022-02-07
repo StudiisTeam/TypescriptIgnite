@@ -4,5 +4,8 @@
   "port": 5432,
   "user": "docker",
   "password": "ignite",
-  "database": "rentx"
+  "database": "rentx",
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
 }
