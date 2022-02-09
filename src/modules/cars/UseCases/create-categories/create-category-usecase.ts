@@ -5,8 +5,8 @@ import { ICategoriesRepository } from "../../repositories/categories-repositorie
 export class CreateCategoryUseCase {
 
   constructor(private categoriesRepository: ICategoriesRepository) { }
-  create({ name, description }: ICreateCategoryDTO): void {
-    const categoryAlreadExist = this.categoriesRepository.findByName(name)
+  async create({ name, description }: ICreateCategoryDTO): Promise<void> {
+    const categoryAlreadExist = await this.categoriesRepository.findByName(name)
     if (categoryAlreadExist) {
       throw new Error("Category alread exist")
     }
