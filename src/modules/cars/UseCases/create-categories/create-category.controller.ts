@@ -6,8 +6,6 @@ export class CreateCategoryController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { name, description } = request.body
-    console.log(request.body);
-
     await this.createCategoryUseCase.create({ name, description })
     return response.status(201).send()
   }
