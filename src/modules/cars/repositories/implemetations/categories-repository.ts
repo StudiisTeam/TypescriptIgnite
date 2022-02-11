@@ -1,7 +1,7 @@
 import { ICreateCategoryDTO } from "../../helper/category-helper";
 import { Category } from "../../entities/category";
-import { ICategoriesRepository } from "../categories-repositories/create-repository";
 import { getRepository, Repository } from "typeorm";
+import { ICategoriesRepository } from "../create-repository";
 
 export class CategoriesRepository implements ICategoriesRepository {
   private repository: Repository<Category>
