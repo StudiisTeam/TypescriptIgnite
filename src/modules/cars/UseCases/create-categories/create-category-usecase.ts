@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe"
 import { ICreateCategoryDTO } from "../../helper/category-helper"
-import { ICategoriesRepository } from "../../repositories/create-repository"
+import { ICategoriesRepository } from "../../repositories/create-repository-protocols"
 
 @injectable()
 export class CreateCategoryUseCase {
