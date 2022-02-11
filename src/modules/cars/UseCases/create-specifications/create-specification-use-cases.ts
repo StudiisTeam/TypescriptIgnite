@@ -12,8 +12,8 @@ export class CreateSpecificationUseCase {
     @inject("SpecificationRepository")
     private specificationRepository: ISpecificationRepository) { }
 
-  create({ name, description }: IRequest): void {
-    const specificationsAlreadExist = this.specificationRepository.findByName(name)
+  async create({ name, description }: IRequest): Promise<void> {
+    const specificationsAlreadExist = await this.specificationRepository.findByName(name)
 
     if (specificationsAlreadExist) {
       throw new Error("Specification Alread exist")
