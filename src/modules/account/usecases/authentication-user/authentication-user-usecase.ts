@@ -3,6 +3,7 @@ import { inject, injectable } from "tsyringe";
 import { IUsersRepository } from "../../repositories/IUsersRepositories";
 import dotenv from 'dotenv'
 import { sign } from "jsonwebtoken";
+import { AppError } from "../../../../errors/app-erros";
 
 dotenv.config()
 
@@ -29,13 +30,13 @@ export class AuthenticationUserUseCase {
     const user = await this.userRepository.findByEmail(email)
 
     if (!user) {
-      throw new Error("User or password incorrect!")
+      throw new AppError("User or password incorrect!")
     }
 
     const passwordIsCorrect = await compare(password, user.password)
 
     if (!passwordIsCorrect) {
-      throw new Error("User or password incorrect!")
+      throw new AppError("User or password incorrect!")
     }
 
     const token = sign({}, process.env.ACCESS_TOKEN_SECRET, {
