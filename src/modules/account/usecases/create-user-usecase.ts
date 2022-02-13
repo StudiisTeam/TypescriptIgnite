@@ -12,6 +12,12 @@ export class CreateUserUseCase {
 
   async create({ email, name, password, driver_licence }: ICreateUserDTO): Promise<void> {
 
+    const userAlreadExists = this.userRepository.findByEmail(email)
+
+    if (userAlreadExists) {
+      throw new Error("User Alread Exists")
+    }
+
     const passwordHashed = await hash(password, 8)
 
     this.userRepository.create({
