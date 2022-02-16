@@ -3,14 +3,14 @@ import { container } from "tsyringe";
 import { UpadateUserAvatarUseCase } from "./update-user-avatar-usecase";
 
 export class UpdateUserAvatarController {
-  async handle(request: Request, response: Response) {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.user
-    const avatarFile = null
-    console.log(id);
+    const avatarFile = request.file.filename
+    console.log(avatarFile);
 
     const upadateUserAvatarUseCase = container.resolve(UpadateUserAvatarUseCase)
 
-    await upadateUserAvatarUseCase.Update({ id, avatarFile })
+    await upadateUserAvatarUseCase.update({ id, avatarFile })
     return response.status(204).send()
   }
 }

@@ -13,12 +13,12 @@ export class UpadateUserAvatarUseCase {
     private userRepository: UserRepository
   ) { }
 
-  async Update({ id, avatarFile }: IRequest): Promise<void> {
+  async update({ id, avatarFile }: IRequest): Promise<void> {
     const user = await this.userRepository.findById(id)
-    console.log(user);
 
     user.avatar = avatarFile
+    console.log(user);
 
-    await this.userRepository.create(user)
+    await this.userRepository.update(user)
   }
 }
