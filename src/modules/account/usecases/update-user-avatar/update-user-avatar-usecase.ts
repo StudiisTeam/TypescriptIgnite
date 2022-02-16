@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { deleteFile } from "../../../../utils/file";
 import { UserRepository } from "../../implementations/users-repositories";
 
 interface IRequest {
@@ -15,10 +16,10 @@ export class UpadateUserAvatarUseCase {
 
   async update({ id, avatarFile }: IRequest): Promise<void> {
     const user = await this.userRepository.findById(id)
-
+    if (user.avatar) {
+      await deleteFile(`./tmp/avatar/${user.avatar}`)
+    }
     user.avatar = avatarFile
-    console.log(user);
-
     await this.userRepository.update(user)
   }
 }
