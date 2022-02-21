@@ -11,7 +11,7 @@ describe('Create Category', () => {
     createCategoryUseCase = new CreateCategoryUseCase(categoriesRepository)
   })
 
-  test('should first', async () => {
+  test('should call create with a correct values', async () => {
     const category = {
       name: "any_Category",
       description: "any_descritption"
