@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 import { AppError } from "../errors/app-erros";
-import { UserRepository } from "../modules/account/implementations/users-repositories";
+import { UserRepository } from "../user/modules/account/implementations/users-repositories";
 
 interface IAuth {
   sub: string

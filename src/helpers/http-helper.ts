@@ -16,5 +16,4 @@ export function HttpHelper(
   return response.status(500).json({
     message: `Internal server error - ${err.message}`
   })
-
 }
