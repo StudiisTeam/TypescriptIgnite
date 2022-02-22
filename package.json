@@ -35,6 +35,6 @@
   "scripts": {
     "dev": "tsnd --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "typeorm": "tsnd ./node_modules/typeorm/cli",
-    "test": "jest"
+    "test": "jest --watch"
   }
 }
