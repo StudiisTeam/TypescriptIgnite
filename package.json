@@ -33,7 +33,7 @@
     "typescript": "^4.5.5"
   },
   "scripts": {
-    "dev": "tsnd --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "dev": "tsnd --inspect --transpile-only --ignore-watch node_modules --respawn src/main/server.ts",
     "typeorm": "tsnd ./node_modules/typeorm/cli",
     "test": "jest --watch"
   }

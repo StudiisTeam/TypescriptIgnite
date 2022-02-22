@@ -1,12 +1,15 @@
-import "./database"
-import "./shared/container"
+import "../infra/database"
+import "../shared/container"
 
 import express from "express";
-import "express-async-errors"
+
+import { HttpHelper } from "../helpers/http-helper";
 import { router } from "./routes";
+
+import "express-async-errors"
 import swaggerUi from "swagger-ui-express"
-import swaggerFile from "./swagger.json"
-import { HttpHelper } from "./helpers/http-helper";
+import swaggerFile from "../swagger.json"
+
 
 const app = express()
 
