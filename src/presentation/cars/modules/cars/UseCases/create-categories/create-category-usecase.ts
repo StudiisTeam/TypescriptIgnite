@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe"
-import { AppError } from "../../../../errors/app-erros"
+import { AppError } from "../../../../../../errors/app-erros"
 import { ICreateCategoryDTO } from "../../helper/category-helper"
 import { ICategoriesRepository } from "../../repositories/create-repository-protocols"
 
