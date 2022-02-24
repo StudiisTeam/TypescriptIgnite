@@ -1,3 +1,4 @@
+import { AppError } from "../../../../../../errors/app-erros";
 import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
 import { UserRepositoryInMemory } from "../../repositories/inMemory/user-repository-in-memory";
 import { CreateUserUseCase } from "../create-user/create-user-usecase";
@@ -39,5 +40,30 @@ describe('Authenticaiton user', () => {
     })
 
     expect(authUser).toHaveProperty("token")
-  })
+  });
+  test('should user not be able to authenticate an user', async () => {
+    expect(async () => {
+      const { sut } = makeSut()
+      await sut.auth({
+        email: "invalid_email@mail.com",
+        password: "invalid_password"
+      })
+    }).rejects.toBeInstanceOf(AppError)
+  });
+  test('should user not be able to authenticate with invalid password', async () => {
+    expect(async () => {
+      const { sut, addAccount } = makeSut()
+      const user: ICreateUserDTO = {
+        name: "fake_name",
+        email: "fake_email@mail.com",
+        password: "fake_password",
+        driver_licence: "fake_licence"
+      }
+      await addAccount.create(user)
+      await sut.auth({
+        email: "fake_email@mail.com",
+        password: "invalid_password"
+      })
+    }).rejects.toBeInstanceOf(AppError)
+  });
 });
