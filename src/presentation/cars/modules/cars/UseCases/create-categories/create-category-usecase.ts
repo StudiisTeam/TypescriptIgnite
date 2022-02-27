@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe"
 import { AppError } from "../../../../../../errors/app-erros"
-import { ICreateCategoryDTO } from "../../helper/category-helper"
+import { ICreateCategoryDTO } from "../../dtos/create-category"
 import { ICategoriesRepository } from "../../repositories/create-repository-protocols"
 
 @injectable()

@@ -1,4 +1,4 @@
-import { ICreateCategoryDTO } from "../../helper/category-helper";
+import { ICreateCategoryDTO } from "../../dtos/create-category";
 import { Category } from "../../entities/category";
 import { getRepository, Repository } from "typeorm";
 import { ICategoriesRepository } from "../create-repository-protocols";
