@@ -7,4 +7,5 @@ export interface ICreateCar {
   fine_amount: number
   brand: string
   category_id: string
+  create_at?: Date
 }

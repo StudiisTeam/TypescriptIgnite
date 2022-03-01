@@ -9,6 +9,18 @@ interface SutTypes {
   carRepositoryStub: CarRepository
 }
 
+const makeFakeCar = () => ({
+  "available": true,
+  "brand": "any_brand",
+  "category_id": "any_category",
+  "daily_rate": 100,
+  "description": "any_description",
+  "fine_amount": 10,
+  "id": "valid_id",
+  "license_plate": "any_license",
+  "name": "any_name",
+})
+
 const makeCarRepository = () => {
   class CarRepositoryStub implements CarRepository {
     cars: Car[] = []
@@ -16,7 +28,7 @@ const makeCarRepository = () => {
       const car = new Car()
       Object.assign(car, carData)
       this.cars.push(car)
-      return new Promise((resolve, reject) => resolve(car))
+      return new Promise((resolve, reject) => resolve(makeFakeCar()))
     }
     async findCarByLicensePlate(license_plate: string): Promise<Car> {
       const car = await this.cars.find((car) => car.license_plate === license_plate)
@@ -25,7 +37,6 @@ const makeCarRepository = () => {
   }
   return new CarRepositoryStub()
 }
-
 
 const makeSut = (): SutTypes => {
   const carRepositoryStub = makeCarRepository()
@@ -48,12 +59,13 @@ const makeFakeRequest = () => ({
 })
 
 describe('Create Car', () => {
+
   test('should be able to create a new car', async () => {
-    const { sut, carRepositoryStub } = makeSut()
-    const addSpy = jest.spyOn(carRepositoryStub, "add")
-    await sut.add(makeFakeRequest())
-    expect(addSpy).toHaveBeenCalledWith(makeFakeRequest())
+    const { sut } = makeSut()
+    const car = await sut.add(makeFakeRequest())
+    expect(car).toEqual(makeFakeCar())
   });
+
   test('should not be able to create a car if exist a licence plate', () => {
     const { sut } = makeSut()
     expect(async () => {

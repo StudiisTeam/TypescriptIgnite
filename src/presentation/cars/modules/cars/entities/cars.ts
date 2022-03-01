@@ -9,12 +9,13 @@ export class Car {
   license_plate: string
   fine_amount: number
   brand: string
-  created_at: Date
+  created_at?: Date
 
   constructor() {
     if (!this.id) {
       this.id = uuidV4()
       this.available = true
+      this.created_at = new Date()
     }
   }
 }
