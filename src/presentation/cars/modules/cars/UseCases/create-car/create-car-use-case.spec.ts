@@ -55,7 +55,7 @@ describe('Create Car', () => {
     expect(addSpy).toHaveBeenCalledWith(makeFakeRequest())
   });
   test('should not be able to create a car if exist a licence plate', () => {
-    const { sut, carRepositoryStub } = makeSut()
+    const { sut } = makeSut()
     expect(async () => {
       await sut.add(makeFakeRequest())
       await sut.add(makeFakeRequest())
