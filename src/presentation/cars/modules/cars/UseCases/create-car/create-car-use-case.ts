@@ -11,32 +11,14 @@ export class CreateCarUseCase {
     private carsRepository: ICarRepository
   ) {}
 
-  async add({
-    name,
-    description,
-    daily_rate,
-    available,
-    license_plate,
-    fine_amount,
-    brand,
-    category_id,
-  }: ICreateCar): Promise<Cars> {
+  async add(carData: ICreateCar): Promise<Cars> {
     const carExists = await this.carsRepository.findCarByLicensePlate(
-      license_plate
+      carData.license_plate
     );
     if (carExists) {
       throw new AppError("Car Alread Exists");
     }
-    const car = await this.carsRepository.add({
-      name,
-      description,
-      daily_rate,
-      available,
-      license_plate,
-      fine_amount,
-      brand,
-      category_id,
-    });
+    const car = await this.carsRepository.add(carData);
     return car;
   }
 }
