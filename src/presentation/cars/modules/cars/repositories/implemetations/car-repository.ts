@@ -16,6 +16,7 @@ export class CarRepository implements ICarRepository {
   }
 
   async findCarByLicensePlate(license_plate: string): Promise<Cars> {
-    return null;
+    const car = await this.repository.findOne({ license_plate });
+    return car;
   }
 }
