@@ -27,7 +27,7 @@ describe("Authenticaiton user", () => {
       name: "any_name",
       email: "any_email@mail.com",
       password: "any_password",
-      driver_licence: "any_licence",
+      driver_license: "any_licence",
     };
 
     await addAccount.create(user);
@@ -55,7 +55,7 @@ describe("Authenticaiton user", () => {
         name: "fake_name",
         email: "fake_email@mail.com",
         password: "fake_password",
-        driver_licence: "fake_licence",
+        driver_license: "fake_licence",
       };
       await addAccount.create(user);
       await sut.auth({
@@ -71,7 +71,7 @@ describe("Authenticaiton user", () => {
         name: "fake_name",
         email: "fake_email@mail.com",
         password: "fake_password",
-        driver_licence: "fake_licence",
+        driver_license: "fake_licence",
       };
       await addAccount.create(user);
       await sut.auth({
