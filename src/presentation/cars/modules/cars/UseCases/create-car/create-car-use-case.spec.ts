@@ -23,6 +23,9 @@ const makeFakeCar = () => ({
 
 const makeCarRepository = () => {
   class CarRepositoryStub implements ICarRepository {
+    findAllAvailableCars(): Promise<Cars[]> {
+      throw new Error("Method not implemented.");
+    }
     cars: Cars[] = [];
     async add(carData: ICreateCar): Promise<Cars> {
       const car = new Cars();
