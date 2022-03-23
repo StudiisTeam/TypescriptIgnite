@@ -9,19 +9,11 @@ interface IRequest {
 export class ListCarUseCase {
   constructor(private carRepository: ICarRepository) {}
   async list({ brand, name, category_id }: IRequest): Promise<Cars[]> {
-    const cars = await this.carRepository.findAllAvailableCars();
-    if (brand) {
-      const car = this.carRepository.findAvailableCarsByBrand(brand);
-      return car;
-    }
-    if (name) {
-      const car = this.carRepository.findAvailableCarsByName(name);
-      return car;
-    }
-    if (category_id) {
-      const car = this.carRepository.findAvailableCarsByCategory(category_id);
-      return car;
-    }
+    const cars = await this.carRepository.findAllAvailableCars({
+      brand,
+      name,
+      category_id,
+    });
     return cars;
   }
 }

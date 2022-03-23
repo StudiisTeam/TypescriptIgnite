@@ -21,13 +21,4 @@ export class CarRepository implements ICarRepository {
   findAllAvailableCars(): Promise<Cars[]> {
     throw new Error("Method not implemented.");
   }
-  findAvailableCarsByName(name: string): Promise<Cars[]> {
-    throw new Error("Method not implemented.");
-  }
-  findAvailableCarsByCategory(category_id: string): Promise<Cars[]> {
-    throw new Error("Method not implemented.");
-  }
-  findAvailableCarsByBrand(brand: string): Promise<Cars[]> {
-    throw new Error("Method not implemented.");
-  }
 }
