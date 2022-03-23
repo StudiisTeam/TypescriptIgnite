@@ -87,4 +87,11 @@ describe("List Cars", () => {
     const cars = await sut.list({ name: "any_name" });
     expect(cars).toEqual([makeFakeCar()]);
   });
+
+  test("should be listAll available cars by brand", async () => {
+    const { sut, carRepository } = makeSut();
+    const car = await carRepository.add(makeFakeCar());
+    const cars = await sut.list({ brand: "any_brand" });
+    expect(cars).toEqual([makeFakeCar()]);
+  });
 });
