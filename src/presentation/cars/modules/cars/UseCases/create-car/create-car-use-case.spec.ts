@@ -23,9 +23,6 @@ const makeFakeCar = () => ({
 
 const makeCarRepository = () => {
   class CarRepositoryStub implements ICarRepository {
-    findAllAvailableCars(): Promise<Cars[]> {
-      throw new Error("Method not implemented.");
-    }
     cars: Cars[] = [];
     async add(carData: ICreateCar): Promise<Cars> {
       const car = new Cars();
@@ -38,6 +35,19 @@ const makeCarRepository = () => {
         (car) => car.license_plate === license_plate
       );
       return car;
+    }
+
+    findAvailableCarsByName(name: string): Promise<Cars[]> {
+      throw new Error("Method not implemented.");
+    }
+    findAvailableCarsByCategory(category_id: string): Promise<Cars[]> {
+      throw new Error("Method not implemented.");
+    }
+    findAvailableCarsByBrand(brand: string): Promise<Cars[]> {
+      throw new Error("Method not implemented.");
+    }
+    findAllAvailableCars(): Promise<Cars[]> {
+      throw new Error("Method not implemented.");
     }
   }
   return new CarRepositoryStub();

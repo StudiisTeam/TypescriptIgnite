@@ -43,9 +43,21 @@ describe("List Cars", () => {
       }
       async findAllAvailableCars(): Promise<Cars[]> {
         const availableCars = this.cars.filter((car) => car.available === true);
-        console.log(availableCars);
-
         return availableCars;
+      }
+      async findAvailableCarsByName(name: string): Promise<Cars[]> {
+        const carByName = this.cars.filter((car) => car.name === name);
+        return carByName;
+      }
+      async findAvailableCarsByCategory(category_id: string): Promise<Cars[]> {
+        const carByCategory = this.cars.filter(
+          (car) => car.category_id === category_id
+        );
+        return carByCategory;
+      }
+      async findAvailableCarsByBrand(brand: string): Promise<Cars[]> {
+        const carByBrand = this.cars.filter((car) => car.brand === brand);
+        return carByBrand;
       }
     }
     return new CarRepositoryStub();
@@ -62,7 +74,9 @@ describe("List Cars", () => {
   test("should be listAll available cars", async () => {
     const { sut, carRepository } = makeSut();
     const car = await carRepository.add(makeFakeCar());
-    const cars = await sut.list();
+    const cars = await sut.list({});
+    console.log(cars);
+
     expect(cars).toEqual([car]);
   });
 });
