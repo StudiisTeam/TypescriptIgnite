@@ -8,7 +8,6 @@ export class CarRepository implements ICarRepository {
   constructor() {
     this.repository = getRepository(Cars);
   }
-
   async add(carData: ICreateCar): Promise<Cars> {
     const car = this.repository.create(carData);
     await this.repository.save(car);
@@ -18,5 +17,17 @@ export class CarRepository implements ICarRepository {
   async findCarByLicensePlate(license_plate: string): Promise<Cars> {
     const car = await this.repository.findOne({ license_plate });
     return car;
+  }
+  findAllAvailableCars(): Promise<Cars[]> {
+    throw new Error("Method not implemented.");
+  }
+  findAvailableCarsByName(name: string): Promise<Cars[]> {
+    throw new Error("Method not implemented.");
+  }
+  findAvailableCarsByCategory(category_id: string): Promise<Cars[]> {
+    throw new Error("Method not implemented.");
+  }
+  findAvailableCarsByBrand(brand: string): Promise<Cars[]> {
+    throw new Error("Method not implemented.");
   }
 }
