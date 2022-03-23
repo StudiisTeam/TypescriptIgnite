@@ -3,12 +3,16 @@ import { Cars } from "../../entities/cars";
 import { ICarRepository } from "../../repositories/car-repository-protocols";
 import { ListCarUseCase } from "./list-cars-usecase";
 
+interface SutTypes {
+  sut: ListCarUseCase;
+  carRepository: ICarRepository;
+}
+interface IRequest {
+  name?: string;
+  brand?: string;
+  category_id?: string;
+}
 describe("List Cars", () => {
-  interface SutTypes {
-    sut: ListCarUseCase;
-    carRepository: ICarRepository;
-  }
-
   const makeFakeCar = () => ({
     available: true,
     brand: "any_brand",
@@ -41,23 +45,22 @@ describe("List Cars", () => {
       findCarByLicensePlate(license_plate: string): Promise<Cars> {
         throw new Error("Method not implemented.");
       }
-      async findAllAvailableCars(): Promise<Cars[]> {
+      async findAllAvailableCars({
+        brand,
+        name,
+        category_id,
+      }: IRequest): Promise<Cars[]> {
         const availableCars = this.cars.filter((car) => car.available === true);
+        if (brand || name || category_id) {
+          const cars = availableCars.filter(
+            (car) =>
+              car.name === name ||
+              car.brand === brand ||
+              car.category_id === category_id
+          );
+          return cars;
+        }
         return availableCars;
-      }
-      async findAvailableCarsByName(name: string): Promise<Cars[]> {
-        const carByName = this.cars.filter((car) => car.name === name);
-        return carByName;
-      }
-      async findAvailableCarsByCategory(category_id: string): Promise<Cars[]> {
-        const carByCategory = this.cars.filter(
-          (car) => car.category_id === category_id
-        );
-        return carByCategory;
-      }
-      async findAvailableCarsByBrand(brand: string): Promise<Cars[]> {
-        const carByBrand = this.cars.filter((car) => car.brand === brand);
-        return carByBrand;
       }
     }
     return new CarRepositoryStub();
@@ -75,8 +78,13 @@ describe("List Cars", () => {
     const { sut, carRepository } = makeSut();
     const car = await carRepository.add(makeFakeCar());
     const cars = await sut.list({});
-    console.log(cars);
-
     expect(cars).toEqual([car]);
+  });
+
+  test("should be listAll available cars by name", async () => {
+    const { sut, carRepository } = makeSut();
+    const car = await carRepository.add(makeFakeCar());
+    const cars = await sut.list({ name: "any_name" });
+    expect(cars).toEqual([makeFakeCar()]);
   });
 });
