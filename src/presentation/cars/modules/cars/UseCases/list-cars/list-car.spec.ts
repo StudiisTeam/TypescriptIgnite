@@ -7,11 +7,7 @@ interface SutTypes {
   sut: ListCarUseCase;
   carRepository: ICarRepository;
 }
-interface IRequest {
-  name?: string;
-  brand?: string;
-  category_id?: string;
-}
+
 describe("List Cars", () => {
   const makeFakeCar = () => ({
     available: true,
@@ -45,11 +41,11 @@ describe("List Cars", () => {
       findCarByLicensePlate(license_plate: string): Promise<Cars> {
         throw new Error("Method not implemented.");
       }
-      async findAllAvailableCars({
-        brand,
-        name,
-        category_id,
-      }: IRequest): Promise<Cars[]> {
+      async findAllAvailableCars(
+        brand?: string,
+        name?: string,
+        category_id?: string
+      ): Promise<Cars[]> {
         const availableCars = this.cars.filter((car) => car.available === true);
         if (brand || name || category_id) {
           const cars = availableCars.filter(
@@ -77,27 +73,27 @@ describe("List Cars", () => {
   test("should be listAll available cars", async () => {
     const { sut, carRepository } = makeSut();
     const car = await carRepository.add(makeFakeCar());
-    const cars = await sut.list({});
+    const cars = await sut.list();
     expect(cars).toEqual([car]);
   });
 
   test("should be listAll available cars by name", async () => {
     const { sut, carRepository } = makeSut();
     const car = await carRepository.add(makeFakeCar());
-    const cars = await sut.list({ name: "any_name" });
+    const cars = await sut.list("any_name");
     expect(cars).toEqual([makeFakeCar()]);
   });
 
   test("should be listAll available cars by brand", async () => {
     const { sut, carRepository } = makeSut();
     const car = await carRepository.add(makeFakeCar());
-    const cars = await sut.list({ brand: "any_brand" });
+    const cars = await sut.list("any_brand");
     expect(cars).toEqual([makeFakeCar()]);
   });
   test("should be listAll available cars by category_id", async () => {
     const { sut, carRepository } = makeSut();
     const car = await carRepository.add(makeFakeCar());
-    const cars = await sut.list({ category_id: "any_category" });
+    const cars = await sut.list("any_category");
     expect(cars).toEqual([makeFakeCar()]);
   });
 });

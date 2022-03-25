@@ -18,7 +18,26 @@ export class CarRepository implements ICarRepository {
     const car = await this.repository.findOne({ license_plate });
     return car;
   }
-  findAllAvailableCars(): Promise<Cars[]> {
-    throw new Error("Method not implemented.");
+  async findAllAvailableCars(
+    brand?: string,
+    name?: string,
+    category_id?: string
+  ): Promise<Cars[]> {
+    const carQuerys = await this.repository
+      .createQueryBuilder("c")
+      .where("available = :available", { available: true });
+
+    if (brand) {
+      carQuerys.andWhere("brand = :brand", { brand });
+    }
+    if (name) {
+      carQuerys.andWhere("name = :name", { name });
+    }
+    if (category_id) {
+      carQuerys.andWhere("category_id = :category_id", { category_id });
+    }
+    const cars = carQuerys.getMany();
+
+    return cars;
   }
 }
