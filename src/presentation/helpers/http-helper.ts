@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from "express"
-import { AppError } from "../errors/app-erros"
+import { NextFunction, Request, Response } from "express";
+import { AppError } from "../errors/app-erros";
 
 export function HttpHelper(
   err: Error,
@@ -7,13 +7,12 @@ export function HttpHelper(
   response: Response,
   next: NextFunction
 ) {
-
   if (err instanceof AppError) {
     response.status(err.statusCode).json({
-      message: err.message
-    })
+      message: err.message,
+    });
   }
   return response.status(500).json({
-    message: `Internal server error - ${err.message}`
-  })
+    message: `Internal server error - ${err.message}`,
+  });
 }

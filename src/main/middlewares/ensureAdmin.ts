@@ -1,5 +1,5 @@
-import { AppError } from "@errors/app-erros";
 import { NextFunction, Request, Response } from "express";
+import { AppError } from "../../presentation/errors/app-erros";
 import { UserRepository } from "../../presentation/user/modules/account/implementations/users-repositories";
 
 export async function ensureAdmin(

@@ -3,7 +3,7 @@ import "../shared/container";
 
 import express from "express";
 
-import { HttpHelper } from "../helpers/http-helper";
+import { HttpHelper } from "../presentation/helpers/http-helper";
 import { router } from "./routes";
 
 import "express-async-errors";
