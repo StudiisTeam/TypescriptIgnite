@@ -4,9 +4,9 @@ import { Cars } from "../entities/cars";
 export interface ICarRepository {
   add(carData: ICreateCar): Promise<Cars>;
   findCarByLicensePlate(license_plate: string): Promise<Cars>;
-  findAllAvailableCars(
+  findAvailableCars(
+    category_id?: string,
     brand?: string,
-    name?: string,
-    category_id?: string
+    name?: string
   ): Promise<Cars[]>;
 }

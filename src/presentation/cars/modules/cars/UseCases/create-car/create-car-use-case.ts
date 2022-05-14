@@ -16,7 +16,7 @@ export class CreateCarUseCase {
       carData.license_plate
     );
     if (carExists) {
-      throw new AppError("Car Alread Exists");
+      throw new Error("Car Alread Exists");
     }
     const car = await this.carsRepository.add(carData);
     return car;
