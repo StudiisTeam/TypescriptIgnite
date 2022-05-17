@@ -1,5 +1,16 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryColumn,
+} from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+import { Category } from "./category";
+import { Specification } from "./specification";
 @Entity("cars")
 export class Cars {
   @PrimaryColumn()
@@ -25,6 +36,18 @@ export class Cars {
 
   @Column()
   brand: string;
+
+  @ManyToOne(() => Category)
+  @JoinColumn({ name: "category_id" })
+  category: Category;
+
+  @ManyToMany(() => Specification)
+  @JoinTable({
+    name: "specification_cars",
+    joinColumns: [{ name: "car_id" }],
+    inverseJoinColumns: [{ name: "specification_id" }],
+  })
+  specification: Specification[];
 
   @Column()
   category_id: string;
