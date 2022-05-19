@@ -14,11 +14,11 @@ export class CreateCarController {
         name,
         description,
         daily_rate,
-        available,
         license_plate,
         fine_amount,
         brand,
         category_id,
+        specification,
       } = request.body;
 
       const createCarUseCase = container.resolve(CreateCarUseCase);
@@ -26,11 +26,11 @@ export class CreateCarController {
         name,
         description,
         daily_rate,
-        available,
         license_plate,
         fine_amount,
         brand,
         category_id,
+        specification,
       });
 
       return response.status(201).json(car);
