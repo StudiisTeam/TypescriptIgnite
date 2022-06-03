@@ -1,4 +1,5 @@
 import { AppError } from "presentation/errors/app-erros";
+import { inject, injectable } from "tsyringe";
 import { SpecificationRepository } from "../../repositories/implemetations";
 import { CarRepository } from "../../repositories/implemetations/car-repository";
 
@@ -7,9 +8,12 @@ interface IRequest {
   specification_id: string[];
 }
 
-export class CreateCarSpecification {
+@injectable()
+export class CreateCarSpecificationUseCase {
   constructor(
+    @inject('CarRepository')
     private carsRepository: CarRepository,
+    @inject('SpecificationRepository')
     private specificationRepository: SpecificationRepository
   ) {}
 
