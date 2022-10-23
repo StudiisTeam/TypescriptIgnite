@@ -1,5 +1,5 @@
+import { AppError } from "helper/errors/app-erros";
 import { inject, injectable } from "tsyringe";
-import { AppError } from "../../../../../errors/app-erros";
 import { ISpecificationRepository } from "../../repositories/specification-protocols";
 
 interface IRequest {
@@ -11,7 +11,7 @@ export class CreateSpecificationUseCase {
   constructor(
     @inject("SpecificationRepository")
     private specificationRepository: ISpecificationRepository
-  ) {}
+  ) { }
 
   async create({ name, description }: IRequest): Promise<void> {
     const specificationsAlreadExist =

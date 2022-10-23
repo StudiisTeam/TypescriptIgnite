@@ -3,7 +3,7 @@ import { inject, injectable } from "tsyringe";
 import { IUsersRepository } from "../../repositories/IUsersRepositories";
 import dotenv from "dotenv";
 import { sign } from "jsonwebtoken";
-import { AppError } from "../../../../../../presentation/errors/app-erros";
+import { AppError } from "helper/errors/app-erros";
 
 dotenv.config();
 
@@ -24,7 +24,7 @@ export class AuthenticationUserUseCase {
   constructor(
     @inject("UserRepository")
     private userRepository: IUsersRepository
-  ) {}
+  ) { }
 
   async auth({ email, password }: IRequest): Promise<IReponse> {
     const user = await this.userRepository.findByEmail(email);

@@ -1,4 +1,4 @@
-import { AppError } from "presentation/errors/app-erros";
+import { AppError } from "helper/errors/app-erros";
 import { inject, injectable } from "tsyringe";
 import { SpecificationRepository } from "../../repositories/implemetations";
 import { CarRepository } from "../../repositories/implemetations/car-repository";
@@ -15,7 +15,7 @@ export class CreateCarSpecificationUseCase {
     private carsRepository: CarRepository,
     @inject('SpecificationRepository')
     private specificationRepository: SpecificationRepository
-  ) {}
+  ) { }
 
   async execute({ car_id, specification_id }: IRequest): Promise<void> {
     const carExist = await this.carsRepository.findById(car_id);

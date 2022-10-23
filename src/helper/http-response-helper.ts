@@ -1,4 +1,4 @@
-import { HttpResponse } from "../protocols/http-protocols";
+import { HttpResponse } from "protocols/http-protocols";
 
 export const ok = (data: any): HttpResponse => ({
   statusCode: 200,
