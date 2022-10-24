@@ -3,12 +3,12 @@ import { container } from "tsyringe";
 import { CreateUserUseCase } from "./create-user-usecase";
 
 export class CreateUserUseController {
-  async handle(request: Request, response: Response): Promise<Response> {
-    const data = request.body
-    const createUserUseCase = container.resolve(CreateUserUseCase)
+    async handle(request: Request, response: Response): Promise<Response> {
+        const data = request.body
+        const createUserUseCase = container.resolve(CreateUserUseCase)
 
-    const user = await createUserUseCase.create(data)
+        const user = await createUserUseCase.create(data)
 
-    return response.status(201).json(user)
-  }
+        return response.status(201).json(user)
+    }
 }

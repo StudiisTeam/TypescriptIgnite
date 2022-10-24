@@ -4,14 +4,10 @@ import { ICategoriesRepository } from "../../repositories/create-repository-prot
 
 @injectable()
 export class ListCategoriesUseCase {
-  constructor(
-    @inject("CategoriesRepository")
-    private categoriesRepository: ICategoriesRepository
-  ) { }
+    constructor(
+        @inject("CategoriesRepository")
+        private categoriesRepository: ICategoriesRepository
+    ) { }
 
-  async execute(): Promise<Category[]> {
-    const categories = await this.categoriesRepository.list()
-    return categories
-  }
-
+    async execute(): Promise<Category[]> { return await this.categoriesRepository.list() }
 }

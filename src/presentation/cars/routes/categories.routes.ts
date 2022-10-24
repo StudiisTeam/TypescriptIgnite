@@ -4,8 +4,6 @@ import { CreateCategoryController } from '../modules/UseCases/create-categories/
 import { ImportCategoriesController } from '../modules/UseCases/import-categories/import-categories-controller'
 import { ListCategoryController } from '../modules/UseCases/list-categories/list-categories.controller'
 
-
-
 export const categoriesRoutes = Router()
 const upload = multer({ dest: "./tmp" })
 

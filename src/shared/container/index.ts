@@ -9,13 +9,13 @@ import { container } from "tsyringe";
 
 
 container.registerSingleton<ICategoriesRepository>(
-  "CategoriesRepository",
-  CategoriesRepository
+    "CategoriesRepository",
+    CategoriesRepository
 );
 
 container.registerSingleton<ISpecificationRepository>(
-  "SpecificationRepository",
-  SpecificationRepository
+    "SpecificationRepository",
+    SpecificationRepository
 );
 
 container.registerSingleton<IUsersRepository>("UserRepository", UserRepository);

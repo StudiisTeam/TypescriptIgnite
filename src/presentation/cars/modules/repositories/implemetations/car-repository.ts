@@ -4,47 +4,47 @@ import { Cars } from "../../entities/cars";
 import { ICarRepository } from "../car-repository-protocols";
 
 export class CarRepository implements ICarRepository {
-  private repository: Repository<Cars>;
-  constructor() {
-    this.repository = getRepository(Cars);
-  }
-
-  async findById(id: string): Promise<Cars> {
-    const car = await this.repository.findOne(id);
-    return car;
-  }
-
-  async findAvailableCars(
-    category_id?: string,
-    brand?: string,
-    name?: string
-  ): Promise<Cars[]> {
-    const carsQuery = await this.repository
-      .createQueryBuilder("c")
-      .where("available = :available", { available: true });
-
-    if (brand) {
-      carsQuery.andWhere("brand = :brand", { brand });
+    private repository: Repository<Cars>;
+    constructor() {
+        this.repository = getRepository(Cars);
     }
-    if (name) {
-      carsQuery.andWhere("name = :name", { name });
+
+    async findById(id: string): Promise<Cars> {
+        const car = await this.repository.findOne(id);
+        return car;
     }
-    if (category_id) {
-      carsQuery.andWhere("category_id = :category_id", { category_id });
+
+    async findAvailableCars(
+        category_id?: string,
+        brand?: string,
+        name?: string
+    ): Promise<Cars[]> {
+        const carsQuery = await this.repository
+            .createQueryBuilder("c")
+            .where("available = :available", { available: true });
+
+        if (brand) {
+            carsQuery.andWhere("brand = :brand", { brand });
+        }
+        if (name) {
+            carsQuery.andWhere("name = :name", { name });
+        }
+        if (category_id) {
+            carsQuery.andWhere("category_id = :category_id", { category_id });
+        }
+        const cars = await carsQuery.getMany();
+
+        return cars;
     }
-    const cars = await carsQuery.getMany();
 
-    return cars;
-  }
+    async add(carData: ICreateCar): Promise<Cars> {
+        const car = this.repository.create(carData);
+        await this.repository.save(car);
+        return car;
+    }
 
-  async add(carData: ICreateCar): Promise<Cars> {
-    const car = this.repository.create(carData);
-    await this.repository.save(car);
-    return car;
-  }
-
-  async findCarByLicensePlate(license_plate: string): Promise<Cars> {
-    const car = await this.repository.findOne({ license_plate });
-    return car;
-  }
+    async findCarByLicensePlate(license_plate: string): Promise<Cars> {
+        const car = await this.repository.findOne({ license_plate });
+        return car;
+    }
 }

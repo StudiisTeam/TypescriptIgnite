@@ -19,6 +19,7 @@ export class CreateSpecificationCars1652666501376
             })
         );
 
+        //specification FK
         await queryRunner.createForeignKey(
             "specification_car",
             new TableForeignKey({
@@ -30,6 +31,8 @@ export class CreateSpecificationCars1652666501376
                 onUpdate: "SET NULL",
             })
         );
+
+        //cars FK
         await queryRunner.createForeignKey(
             "specification_car",
             new TableForeignKey({

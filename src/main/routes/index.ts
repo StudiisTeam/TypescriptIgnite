@@ -5,7 +5,6 @@ import { specificationRoutes } from "presentation/cars/routes/specification.rout
 import { userRoutes } from "presentation/user/routes/users.routes";
 import { authRoutes } from "./authenticate.routes";
 
-
 export const router = Router();
 
 router.use("/categories", categoriesRoutes);
